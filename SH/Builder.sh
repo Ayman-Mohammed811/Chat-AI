@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-PROJECT_ROOT="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_PATH="$(cd "$(dirname "$0")" && pwd)"
+cd ..
+PROJECT_ROOT="$(cd "$SCRIPT_PATH/.." && pwd)"
 BUILD_DIR="$PROJECT_ROOT/build"
 
 # Safety: refuse to build if an in-source build exists
@@ -26,4 +28,4 @@ fi
 cmake --build . -j"$(nproc)"
 
 # make run.sh executable
-chmod +x "$PROJECT_ROOT/run.sh"
+chmod +x "$SCRIPT_PATH/Runner.sh"
